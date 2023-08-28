@@ -27,9 +27,7 @@ public class InsertController {
 	static Scanner sc = new Scanner(System.in);
 	
 	@FXML    private TextField textcontent;
-
     @FXML    private TextArea texttitle;
-
     @FXML    private TextArea textwriter;
     
     @FXML
@@ -53,6 +51,6 @@ public class InsertController {
 		return board;
 	}
  	
- 	SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
+// 	SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
 	}
-}
+
