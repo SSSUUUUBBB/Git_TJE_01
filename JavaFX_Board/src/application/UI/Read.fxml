@@ -7,33 +7,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ReadController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SelectController">
    <children>
-      <Label alignment="CENTER" layoutX="277.0" layoutY="63.0" text="게시물 읽기">
+      <Label layoutX="32.0" layoutY="14.0" text="게시글">
          <font>
-            <Font size="47.0" />
+            <Font size="38.0" />
          </font>
       </Label>
-      <Button fx:id="Delete" layoutX="668.0" layoutY="105.0" mnemonicParsing="false" onAction="#Delete" prefHeight="28.0" prefWidth="64.0" text="삭제" />
-      <TextField fx:id="writer" layoutX="152.0" layoutY="152.0" prefHeight="50.0" prefWidth="582.0" />
-      <TextArea fx:id="content" layoutX="152.0" layoutY="284.0" prefHeight="290.0" prefWidth="582.0" />
-      <TextField fx:id="title" layoutX="152.0" layoutY="218.0" prefHeight="50.0" prefWidth="582.0" />
-      <Label alignment="CENTER" layoutX="43.0" layoutY="161.0" text="작성자">
+      <Label layoutX="32.0" layoutY="69.0" text="title">
          <font>
-            <Font size="28.0" />
+            <Font size="26.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="43.0" layoutY="227.0" text="제    목">
+      <Label layoutX="32.0" layoutY="107.0" text="writer">
          <font>
-            <Font size="28.0" />
+            <Font size="26.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="46.0" layoutY="288.0" text="내   용">
+      <Label layoutX="34.0" layoutY="146.0" text="content">
          <font>
-            <Font size="28.0" />
+            <Font size="26.0" />
          </font>
       </Label>
-      <Button fx:id="boardBack1" layoutX="32.0" layoutY="21.0" mnemonicParsing="false" onAction="#boardBack1" prefHeight="28.0" prefWidth="64.0" text="뒤로가기" />
-      <Button fx:id="Update" layoutX="585.0" layoutY="105.0" mnemonicParsing="false" onAction="#Update" prefHeight="28.0" prefWidth="64.0" text="수정" />
+      <TextField fx:id="titleName" editable="false" layoutX="134.0" layoutY="74.0" prefHeight="30.0" prefWidth="420.0" />
+      <TextField fx:id="writerName" editable="false" layoutX="134.0" layoutY="112.0" prefHeight="30.0" prefWidth="420.0" />
+      <TextArea fx:id="content" editable="false" layoutX="134.0" layoutY="153.0" prefHeight="176.0" prefWidth="420.0" />
+      <Button layoutX="464.0" layoutY="22.0" mnemonicParsing="false" onAction="#listOnAction" prefHeight="30.0" prefWidth="90.0" text="목록" />
+      <Button fx:id="delButton" layoutX="364.0" layoutY="22.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="30.0" prefWidth="90.0" text="삭제" />
+      <Button layoutX="264.0" layoutY="22.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="30.0" prefWidth="90.0" text="수정" />
    </children>
 </AnchorPane>
