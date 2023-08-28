@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import application.Controller.ReadController;
+import application.Controller.UI;
 import application.DTO.Board;
 import application.DTO.Text;
 import application.Service.BoardService;
@@ -40,23 +42,23 @@ public class MainController implements Initializable {
 		printAll(boardList);
 	}
 	
-	public static void printAll(List<? extends Text> list) {
+	public static void printAll(List<Board> list) {
 		if( list == null || list.isEmpty() ) {
 			return;
 		}
 		
-		for (Text text : list) {
+		for (Board text : list) {
 			print(text);
 		}
 	}
 	
-	public static void print(Text text) {
+	public static void print(Board text) {
 		
 		if( text == null ) {
 			return;
 		}
 		
-		int no = text.getNo();
+		int no = text.getBoardNo();
 		String title = text.getTitle();
 		String writer =  text.getWriter();
 		String content = text.getContent();
@@ -143,9 +145,15 @@ public class MainController implements Initializable {
 	}
 	
 	//글쓰기화면 이동
-	SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
+	@FXML
+    void insert(ActionEvent event) throws IOException {
+ 	SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
+ 	}
 	
 	//프로그램종료
-	SceneUtil.getInstance().close(event);
-}
+	@FXML
+    void exit(ActionEvent event) throws IOException {
+		SceneUtil.getInstance().close(event);
+ 	}
+
 }

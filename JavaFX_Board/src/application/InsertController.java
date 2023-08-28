@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
+import application.Controller.UI;
 import application.DTO.Board;
 import application.Service.BoardService;
 import application.Service.BoardServiceImpl;
@@ -56,6 +57,8 @@ public class InsertController {
 		return board;
 	}
  	
+ 	@FXML
+    void back(ActionEvent event) throws IOException {
  	SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
-	}
+ 	}
 }
