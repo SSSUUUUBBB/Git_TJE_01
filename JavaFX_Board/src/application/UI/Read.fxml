@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SelectController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ReadController">
    <children>
       <Label layoutX="32.0" layoutY="14.0" text="게시글">
          <font>
@@ -32,8 +32,8 @@
       <TextField fx:id="titleName" editable="false" layoutX="134.0" layoutY="74.0" prefHeight="30.0" prefWidth="420.0" />
       <TextField fx:id="writerName" editable="false" layoutX="134.0" layoutY="112.0" prefHeight="30.0" prefWidth="420.0" />
       <TextArea fx:id="content" editable="false" layoutX="134.0" layoutY="153.0" prefHeight="176.0" prefWidth="420.0" />
-      <Button layoutX="464.0" layoutY="22.0" mnemonicParsing="false" onAction="#listOnAction" prefHeight="30.0" prefWidth="90.0" text="목록" />
-      <Button fx:id="delButton" layoutX="364.0" layoutY="22.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="30.0" prefWidth="90.0" text="삭제" />
-      <Button layoutX="264.0" layoutY="22.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="30.0" prefWidth="90.0" text="수정" />
+      <Button fx:id="ListButton" layoutX="464.0" layoutY="22.0" mnemonicParsing="false" onAction="#List" prefHeight="30.0" prefWidth="90.0" text="목록" />
+      <Button fx:id="DeleteButton" layoutX="364.0" layoutY="22.0" mnemonicParsing="false" onAction="#Delete" prefHeight="30.0" prefWidth="90.0" text="삭제" />
+      <Button fx:id="updateButton" layoutX="264.0" layoutY="22.0" mnemonicParsing="false" onAction="#Update" prefHeight="30.0" prefWidth="90.0" text="수정" />
    </children>
 </AnchorPane>

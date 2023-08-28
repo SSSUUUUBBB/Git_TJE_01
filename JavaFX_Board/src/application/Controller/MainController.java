@@ -1,6 +1,4 @@
-package application;
-
-import javafx.fxml.Initializable;
+package application.Controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +14,6 @@ import application.Service.BoardServiceImpl;
 import application.Util.SceneUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,23 +62,12 @@ public class MainController implements Initializable {
 		
 	}
 	
-	@FXML
-	private TableView<Board> boardTableView;
-
-	@FXML
-	private TableColumn<Board, Integer> colBoardNo;
-
-	@FXML
-	private TableColumn<Board, Date> colRegDate;
-
-	@FXML
-	private TableColumn<Board, String> colTitle;
-
-	@FXML
-	private TableColumn<Board, Date> colUpdDate;
-
-	@FXML
-	private TableColumn<Board, String> colWriter;
+	@FXML private TableView<Board> boardTableView;
+	@FXML private TableColumn<Board, Integer> colBoardNo;
+	@FXML private TableColumn<Board, Date> colRegDate;
+	@FXML private TableColumn<Board, String> colTitle;
+	@FXML private TableColumn<Board, Date> colUpdDate;
+	@FXML private TableColumn<Board, String> colWriter;
 	
 	 Stage stage;
 	 Scene scene;

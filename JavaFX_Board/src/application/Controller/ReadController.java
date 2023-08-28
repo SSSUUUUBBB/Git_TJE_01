@@ -32,12 +32,23 @@ public class ReadController {
     @FXML private TableColumn<Board, Date> colRegDate;
     @FXML private TableColumn<Board, Date> colUpdDate;
     
-    @FXML private Button Delete;
-    @FXML private Button Update;
-    @FXML private Button boardBack1;
+    @FXML private Button DeleteButton;
+    @FXML private Button ListButton;
     @FXML private TextArea content;
-    @FXML private TextField title;
-    @FXML private TextField writer;
+    @FXML private TextField titleName;
+    @FXML private Button updateButton;
+    @FXML private TextField writerName;
+
+    @FXML
+    void Delete(ActionEvent event) {
+
+    }
+
+    @FXML
+    void List(ActionEvent event) {
+
+    }
+    
     Board selectedItem;
 	private Parent root;
 	private Stage stage;
@@ -47,7 +58,7 @@ public class ReadController {
 	public void inputItemIndex(int index) {
 
 		selectedBoard = boardService.select(index);
-		System.out.println(selected Board);
+		System.out.println(selectedBoard);
 		
  		title.setText(selectedBoard.getTitle());
  		writer.setText(selectedBoard.getWriter());

@@ -1,4 +1,4 @@
-package application;
+package application.Controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,14 +26,11 @@ public class InsertController {
 	
 	static Scanner sc = new Scanner(System.in);
 	
-	@FXML
-    private TextField textcontent;
+	@FXML    private TextField textcontent;
 
-    @FXML
-    private TextArea texttitle;
+    @FXML    private TextArea texttitle;
 
-    @FXML
-    private TextArea textwriter;
+    @FXML    private TextArea textwriter;
     
     @FXML
     void write(ActionEvent event) throws IOException {
