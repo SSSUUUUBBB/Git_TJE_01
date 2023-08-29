@@ -5,10 +5,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BoardGUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
-      <TableView fx:id="tableView" prefHeight="360.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-      style="-fx-background-color: #F0F0F0; -fx-border-color: #CCCCCC;">
+      <TableView fx:id="tableView" prefHeight="360.0" prefWidth="600.0" style="-fx-background-color: #F0F0F0; -fx-border-color: #CCCCCC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columns>
             <TableColumn fx:id="colNumber" prefWidth="75.0" text="번호" />
             <TableColumn fx:id="colTitle" prefWidth="225.0" text="제목" />
@@ -19,4 +18,3 @@
       <Button fx:id="btnWrite" layoutX="14.0" layoutY="369.0" mnemonicParsing="false" onAction="#writePost" text="글쓰기" />
    </children>
 </AnchorPane>
-

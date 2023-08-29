@@ -1,6 +1,4 @@
-package application;
-
-import javafx.fxml.Initializable;
+package application.Controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -9,8 +7,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import application.Controller.ReadController;
-import application.Controller.UI;
 import application.DTO.Board;
 import application.DTO.Text;
 import application.Service.BoardService;
@@ -18,7 +14,6 @@ import application.Service.BoardServiceImpl;
 import application.Util.SceneUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,23 +37,23 @@ public class MainController implements Initializable {
 		printAll(boardList);
 	}
 	
-	public static void printAll(List<Board> list) {
+	public static void printAll(List<? extends Text> list) {
 		if( list == null || list.isEmpty() ) {
 			return;
 		}
 		
-		for (Board text : list) {
+		for (Text text : list) {
 			print(text);
 		}
 	}
 	
-	public static void print(Board text) {
+	public static void print(Text text) {
 		
 		if( text == null ) {
 			return;
 		}
 		
-		int no = text.getBoardNo();
+		int no = text.getNo();
 		String title = text.getTitle();
 		String writer =  text.getWriter();
 		String content = text.getContent();
@@ -67,23 +62,12 @@ public class MainController implements Initializable {
 		
 	}
 	
-	@FXML
-	private TableView<Board> boardTableView;
-
-	@FXML
-	private TableColumn<Board, Integer> colBoardNo;
-
-	@FXML
-	private TableColumn<Board, Date> colRegDate;
-
-	@FXML
-	private TableColumn<Board, String> colTitle;
-
-	@FXML
-	private TableColumn<Board, Date> colUpdDate;
-
-	@FXML
-	private TableColumn<Board, String> colWriter;
+	@FXML private TableView<Board> boardTableView;
+	@FXML private TableColumn<Board, Integer> colBoardNo;
+	@FXML private TableColumn<Board, Date> colRegDate;
+	@FXML private TableColumn<Board, String> colTitle;
+	@FXML private TableColumn<Board, Date> colUpdDate;
+	@FXML private TableColumn<Board, String> colWriter;
 	
 	 Stage stage;
 	 Scene scene;
@@ -145,15 +129,9 @@ public class MainController implements Initializable {
 	}
 	
 	//글쓰기화면 이동
-	@FXML
-    void insert(ActionEvent event) throws IOException {
- 	SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
- 	}
+	SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
 	
 	//프로그램종료
-	@FXML
-    void exit(ActionEvent event) throws IOException {
-		SceneUtil.getInstance().close(event);
- 	}
-
+	SceneUtil.getInstance().close(event);
+}
 }
