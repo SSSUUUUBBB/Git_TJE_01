@@ -33,7 +33,10 @@ import javafx.stage.Stage;
 public class MainController implements Initializable{
 	static List<Board> boardList = new ArrayList<Board>();				// 게시글 목록
 	static BoardService boardService = new BoardServiceImpl();
-	
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    
 	@FXML private TableView<Board> tableView;
     @FXML private TableColumn<Board, Integer> colNumber;
     @FXML private TableColumn<Board, String> colTitle;
@@ -45,21 +48,16 @@ public class MainController implements Initializable{
     @FXML private TextField wirter;
     Board selectedItem;
 
-    
     @FXML void Write(ActionEvent event) throws IOException {
-    	SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
-    	//switchScene(event, "Write.fxml");
+    	//SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
+    	switchScene(event, UI.INSERT.getPath());
     }
  
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
- 	
 	@Override
 	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 			
-//		System.out.println("##### 게시글 목록 #####");
+		System.out.println("##### 게시글 목록 #####");
 		boardList = boardService.list(); // 게시글 목록
 		printAll(boardList);
 		
@@ -72,12 +70,7 @@ public class MainController implements Initializable{
 		colRegdate.setCellValueFactory(new PropertyValueFactory<>("RegDate"));
 		colUdpdate.setCellValueFactory(new PropertyValueFactory<>("updDate"));
 		
-		// TableView에 데이터 리스트를 지정
-		// - 미리 매핑된 TableColumn에 리스트의 요소 객체의 변수값이 지정됨
 		tableView.setItems(list);
-		
-		//boardTableView.getItems().addAll(boardList);
-		// 더블 클릭 이벤트
 		tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			
 			@Override
@@ -91,13 +84,10 @@ public class MainController implements Initializable{
 					stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					
 					int index = tableView.getSelectionModel().getSelectedItem().getBoardNo();
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("Read.fxml"));
-					
-					
+					//Parent root = FXMLLoader.load(getClass().getResource(UI.MAIN.getPath()));
+					FXMLLoader loader = new FXMLLoader(getClass().getResource(UI.READ.getPath()));
 					try {
-						
 						root = loader.load();				
-													
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -108,16 +98,11 @@ public class MainController implements Initializable{
 						readController.inputItemIndex(index);
 					}
 					
-					try {
-						SceneUtil.getInstance().switchScene(event, UI.READ.getPath());
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-
+					// 화면 이동
+					switchScene(stage, "Read.fxml");
 				}
 	    }
 		});
-		
 	}
 		
 		/**
@@ -173,5 +158,19 @@ public class MainController implements Initializable{
 			System.out.println("######################################");
 			System.out.println();
 		}
+		
+		public void switchScene(ActionEvent event, String fxml) throws IOException {
+			Parent root = FXMLLoader.load(getClass().getResource(fxml));
+			scene = new Scene(root);
+			stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+			stage.setScene(scene);
+			stage.show();
+	}	
+		
+		public void switchScene(Stage stage, String fxml) {
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+	}	
 }
 

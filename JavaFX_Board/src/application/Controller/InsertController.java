@@ -1,6 +1,7 @@
 package application.Controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,43 +15,72 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class InsertController {
-	private Stage stage;
-	private Scene scene;
-	
+	static List<Board> boardList = new ArrayList<Board>();				// 게시글 목록
 	static BoardService boardService = new BoardServiceImpl();
-	
-	static Scanner sc = new Scanner(System.in);
-	
-	@FXML    private TextField textcontent;
-    @FXML    private TextArea texttitle;
-    @FXML    private TextArea textwriter;
+	private Stage stage;
+    private Scene scene;
+    private Parent root;
     
+    @FXML private TextArea contentField;
+    @FXML private Button goListButton;
+    @FXML private Button postButton;
+    @FXML private TextField titleField;
+    @FXML private TextField writerField;
+
+    @FXML
+    void List(ActionEvent event) throws IOException {
+		switchScene(event, UI.MAIN.getPath()); 
+    }
+
     @FXML
     void Write(ActionEvent event) throws IOException {
-    	Board board = input();
-    	
-    	int result = boardService.insert( board );
-    	
-    	SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
+    	System.out.println("##### 게시글 쓰기 #####");
+		System.out.print("작성자 : ");
+		String writer1 = writerField.getText();
+		System.out.print("제목 : ");
+		String title1 = titleField.getText();
+		System.out.print("내용 : ");
+		String content1 = contentField.getText();
+		Board board = new Board(title1, writer1, content1);
+		int result = boardService.insert( board );
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(UI.MAIN.getPath()));
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		if( result > 0 ) {
+			System.out.println("게시글이 작성되었습니다.");
+		} 
+		
+    	switchScene(event, UI.MAIN.getPath()); 
     }
-    
- 	public Board input() {
- 		
-		String title = texttitle.getText();
-		
-		String writer = textwriter.getText();
-		
-		String content = textcontent.getText();
-		
-		Board board = new Board(title, writer, content);
-		return board;
-	}
+        
+// 	public Board input() {
+// 		
+//		String title = texttitle.getText();
+//		String writer = textwriter.getText();
+//		String content = textcontent.getText();
+//		
+//		Board board = new Board(title, writer, content);
+//		return board;
+//	}
  	
 // 	SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
+ 	public void switchScene(ActionEvent event, String fxml) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource(fxml));
+		scene = new Scene(root);
+		stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+		stage.setScene(scene);		// 메인 씬으로 지정
+		stage.show();
+}
 	}
 

@@ -32,7 +32,7 @@
       <TextField fx:id="titleField" layoutX="144.0" layoutY="84.0" prefHeight="30.0" prefWidth="420.0" />
       <TextField fx:id="writerField" layoutX="144.0" layoutY="122.0" prefHeight="30.0" prefWidth="420.0" />
       <TextArea fx:id="contentField" layoutX="144.0" layoutY="163.0" prefHeight="176.0" prefWidth="420.0" />
-      <Button fx:id="goListButton" layoutX="496.0" layoutY="32.0" mnemonicParsing="false" onAction="#temp" prefHeight="30.0" prefWidth="68.0" text="목록" />
-      <Button fx:id="postButton" layoutX="419.0" layoutY="32.0" mnemonicParsing="false" onAction="#UpdateCompl" prefHeight="30.0" prefWidth="68.0" text="글 올리기" />
+      <Button fx:id="goListButton" layoutX="496.0" layoutY="32.0" mnemonicParsing="false" onAction="#List" prefHeight="30.0" prefWidth="68.0" text="목록" />
+      <Button fx:id="postButton" layoutX="419.0" layoutY="32.0" mnemonicParsing="false" onAction="#Write" prefHeight="30.0" prefWidth="68.0" text="글 올리기" />
    </children>
 </AnchorPane>

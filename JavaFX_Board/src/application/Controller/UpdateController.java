@@ -11,29 +11,16 @@ import application.Service.BoardServiceImpl;
 import application.Util.SceneUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-public class UpdateController {
-	static List<Board> boardList = new ArrayList<Board>();				// 게시글 목록
+	public class UpdateController {
+		
+	static List<Board> boardList = new ArrayList<Board>();
 	static BoardService boardService = new BoardServiceImpl();
-	
 	Text selectedBoard;
-//    @FXML private Button Delete;
-//    @FXML private Button UpdateCompl;
-//  //  @FXML private Button Upload;
-//    @FXML private Button boardBack1;
-//    @FXML private TextArea content;
-//    @FXML private TextField title;
-//    @FXML private TextField writer;
     Board selectedItem;
-//	@FXML private TableView<Board> boardTableView;
     
     @FXML private Button applyButton;
     @FXML private TextArea content;
@@ -41,18 +28,13 @@ public class UpdateController {
     @FXML private TextField titleName;
     @FXML private TextField writerName;
 
-    @FXML void List(ActionEvent event) {
-
+    @FXML void List(ActionEvent event) throws IOException {
+    	SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
     }
 
-  public void inputItemIndex(int boardNo) { 
-	  
- 		System.out.println("넘어온 boardNo : " + boardNo);
- 		
+    public void inputItemIndex(int boardNo) { 
+    	
  		selectedBoard = boardService.select(boardNo);
- 		System.out.println("##########################################");
- 		System.out.println(selectedBoard == null);
- 		System.out.println(selectedBoard);
  		
  		titleName.setText(selectedBoard.getTitle());
  		writerName.setText(selectedBoard.getWriter());
@@ -60,17 +42,11 @@ public class UpdateController {
  	}
     
     public void UpdateCompl(ActionEvent event) throws IOException {
-    	System.out.println("##### 게시글 수정 #####");
-		System.out.print("게시글 번호 : "); // 여기까지만 정상
+
     	int boardNo = selectedBoard.getNo(); // null값임
     	
-		System.out.print("작성자 : ");
 		String writer1 = writerName.getText();
-		
-		System.out.print("제목 : ");
 		String title1 = titleName.getText();
-		
-		System.out.print("내용 : ");
 		String content1 = content.getText();
 		
 		Board board = new Board(title1, writer1, content1);
@@ -82,13 +58,5 @@ public class UpdateController {
 		}
 		
 		SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
-		
     }
-
-    @FXML void boardBack1(ActionEvent event) throws IOException {
-    //	root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-    	 
-		SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
-	}
-    
 }
