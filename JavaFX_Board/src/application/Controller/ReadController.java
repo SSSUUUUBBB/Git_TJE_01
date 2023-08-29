@@ -91,7 +91,6 @@ public class ReadController {
 			}
 			
 			UpdateController updateController = loader.getController();
-			
 			if(updateController != null) {
 				updateController.inputItemIndex(boardNo);
 			}
