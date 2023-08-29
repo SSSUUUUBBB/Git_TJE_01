@@ -40,22 +40,20 @@ public class InsertController {
 
     @FXML
     void Write(ActionEvent event) throws IOException {
-    	System.out.println("##### 게시글 쓰기 #####");
-		System.out.print("작성자 : ");
 		String writer1 = writerField.getText();
-		System.out.print("제목 : ");
 		String title1 = titleField.getText();
-		System.out.print("내용 : ");
 		String content1 = contentField.getText();
 		Board board = new Board(title1, writer1, content1);
 		int result = boardService.insert( board );
 		
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(UI.MAIN.getPath()));
-		try {
-			root = loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		FXMLLoader loader = new FXMLLoader(getClass().getResource(UI.MAIN.getPath()));
+//		try {
+//			root = loader.load();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
+		SceneUtil.getInstance().getController(UI.MAIN.getPath());
 		
 		if( result > 0 ) {
 			System.out.println("게시글이 작성되었습니다.");
