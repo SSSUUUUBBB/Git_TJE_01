@@ -40,10 +40,17 @@ public class ReadController {
     @FXML private TextField writerName;
 
     @FXML
-    void Delete(ActionEvent event) {
-
+    void Delete(ActionEvent event) throws IOException {
+    	System.out.println("##### 게시글 삭제 #####");
+		System.out.print("게시글 번호 : ");
+		int boardNo = selectedBoard.getNo();
+		int result = boardService.delete(boardNo);
+		if( result > 0 ) {
+			System.out.println("게시글이 삭제되었습니다.");
+		}
+		SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
     }
-
+    
     @FXML
     void List(ActionEvent event) {
 
@@ -51,8 +58,6 @@ public class ReadController {
     
     Board selectedItem;
 	private Parent root;
-	private Stage stage;
-    private Scene scene;
 
 	//게시글 읽기
 	public void inputItemIndex(int index) {
@@ -60,8 +65,8 @@ public class ReadController {
 		selectedBoard = boardService.select(index);
 		System.out.println(selectedBoard);
 		
- 		title.setText(selectedBoard.getTitle());
- 		writer.setText(selectedBoard.getWriter());
+		titleName.setText(selectedBoard.getTitle());
+		writerName.setText(selectedBoard.getWriter());
  		content.setText(selectedBoard.getContent());
 	}
 	
@@ -77,7 +82,8 @@ public class ReadController {
 			String write = selectedBoard.getTitle();
 			String content = selectedBoard.getTitle();
 	    	
-			if(updateController != null) {
+			if(SceneUtil.getInstance().getController(UI.UPDATE.getPath()) != null) {
+				UpdateController updateController = new UpdateController();
 				updateController.inputItemIndex(boardNo);
 			}
 			

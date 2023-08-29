@@ -14,14 +14,14 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource( UI.MAIN.getPath() ));
+			Parent root = FXMLLoader.load(getClass().getResource( UI.MAIN.getPath()));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage.setScene(scene);
 			stage.show();
 			
 			// 글쓰기 화면으로 이동
-			// SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
+			//SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
 			
 			// 프로그램 종료
 			// SceneUtil.getInstance().close(stage);

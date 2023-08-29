@@ -118,7 +118,12 @@ public class MainController implements Initializable {
 						subController.inputItemIndex(index);
 					}
 					
-					SceneUtil.getInstance().switchScene(event, UI.READ.getPath());
+					try {
+						SceneUtil.getInstance().switchScene(event, UI.READ.getPath());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					
 				}
 				
@@ -126,12 +131,10 @@ public class MainController implements Initializable {
 		
 			
 		});
+//			//글쓰기화면 이동
+//			SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
+//			
+//			//프로그램종료
+//			SceneUtil.getInstance().close(event);
 	}
-	
-	//글쓰기화면 이동
-	SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
-	
-	//프로그램종료
-	SceneUtil.getInstance().close(event);
-}
 }

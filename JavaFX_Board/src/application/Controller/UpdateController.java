@@ -24,21 +24,27 @@ public class UpdateController {
 	static List<Board> boardList = new ArrayList<Board>();				// 게시글 목록
 	static BoardService boardService = new BoardServiceImpl();
 	
-	private Stage stage;
-    private Scene scene;
-    private Parent root;
-	 Text selectedBoard;
-    @FXML private Button Delete;
-    @FXML private Button UpdateCompl;
-  //  @FXML private Button Upload;
-    @FXML private Button boardBack1;
-    @FXML private TextArea content;
-    @FXML private TextField title;
-    @FXML private TextField writer;
+	Text selectedBoard;
+//    @FXML private Button Delete;
+//    @FXML private Button UpdateCompl;
+//  //  @FXML private Button Upload;
+//    @FXML private Button boardBack1;
+//    @FXML private TextArea content;
+//    @FXML private TextField title;
+//    @FXML private TextField writer;
     Board selectedItem;
-	@FXML private TableView<Board> boardTableView;
-   
+//	@FXML private TableView<Board> boardTableView;
     
+    @FXML private Button applyButton;
+    @FXML private TextArea content;
+    @FXML private Button listButton;
+    @FXML private TextField titleName;
+    @FXML private TextField writerName;
+
+    @FXML void List(ActionEvent event) {
+
+    }
+
   public void inputItemIndex(int boardNo) { 
 	  
  		System.out.println("넘어온 boardNo : " + boardNo);
@@ -48,8 +54,8 @@ public class UpdateController {
  		System.out.println(selectedBoard == null);
  		System.out.println(selectedBoard);
  		
- 		title.setText(selectedBoard.getTitle());
- 		writer.setText(selectedBoard.getWriter());
+ 		titleName.setText(selectedBoard.getTitle());
+ 		writerName.setText(selectedBoard.getWriter());
  		content.setText(selectedBoard.getContent());
  	}
     
@@ -59,10 +65,10 @@ public class UpdateController {
     	int boardNo = selectedBoard.getNo(); // null값임
     	
 		System.out.print("작성자 : ");
-		String writer1 = writer.getText();
+		String writer1 = writerName.getText();
 		
 		System.out.print("제목 : ");
-		String title1 = title.getText();
+		String title1 = titleName.getText();
 		
 		System.out.print("내용 : ");
 		String content1 = content.getText();
@@ -80,7 +86,7 @@ public class UpdateController {
     }
 
     @FXML void boardBack1(ActionEvent event) throws IOException {
-    	root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+    //	root = FXMLLoader.load(getClass().getResource("Main.fxml"));
     	 
 		SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
 	}
