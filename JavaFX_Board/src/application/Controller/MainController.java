@@ -14,6 +14,7 @@ import application.Service.BoardServiceImpl;
 import application.Util.SceneUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,12 +33,12 @@ public class MainController implements Initializable {
 	static BoardService boardService = new BoardServiceImpl();
 	
 	
-	public static void list() {
+	public void list() {
 		boardList = boardService.list();
 		printAll(boardList);
 	}
 	
-	public static void printAll(List<? extends Text> list) {
+	public void printAll(List<? extends Text> list) {
 		if( list == null || list.isEmpty() ) {
 			return;
 		}
@@ -47,7 +48,7 @@ public class MainController implements Initializable {
 		}
 	}
 	
-	public static void print(Text text) {
+	public void print(Text text) {
 		
 		if( text == null ) {
 			return;
@@ -131,10 +132,15 @@ public class MainController implements Initializable {
 		
 			
 		});
+		 
+		 
 //			//글쓰기화면 이동
-//			SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
 //			
 //			//프로그램종료
 //			SceneUtil.getInstance().close(event);
+	}
+	@FXML
+	void writePost(ActionEvent event) throws IOException {
+		SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
 	}
 }
