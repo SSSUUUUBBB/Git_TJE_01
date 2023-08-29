@@ -14,6 +14,7 @@ import application.Service.BoardServiceImpl;
 import application.Util.SceneUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,120 +22,156 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class MainController implements Initializable {
-	static List<Board> boardList = new ArrayList<Board>();
+public class MainController implements Initializable{
+	static List<Board> boardList = new ArrayList<Board>();				// 게시글 목록
 	static BoardService boardService = new BoardServiceImpl();
 	
-	
-	public static void list() {
-		boardList = boardService.list();
-		printAll(boardList);
-	}
-	
-	public static void printAll(List<? extends Text> list) {
-		if( list == null || list.isEmpty() ) {
-			return;
-		}
-		
-		for (Text text : list) {
-			print(text);
-		}
-	}
-	
-	public static void print(Text text) {
-		
-		if( text == null ) {
-			return;
-		}
-		
-		int no = text.getNo();
-		String title = text.getTitle();
-		String writer =  text.getWriter();
-		String content = text.getContent();
-		Date regDate = text.getRegDate();
-		Date updDate = text.getUpdDate();
-		
-	}
-	
-	@FXML private TableView<Board> boardTableView;
-	@FXML private TableColumn<Board, Integer> colBoardNo;
-	@FXML private TableColumn<Board, Date> colRegDate;
-	@FXML private TableColumn<Board, String> colTitle;
-	@FXML private TableColumn<Board, Date> colUpdDate;
-	@FXML private TableColumn<Board, String> colWriter;
-	
-	 Stage stage;
-	 Scene scene;
-	 Parent root;
-	 Board selectedItem;
+	@FXML private TableView<Board> tableView;
+    @FXML private TableColumn<Board, Integer> colNumber;
+    @FXML private TableColumn<Board, String> colTitle;
+    @FXML private TableColumn<Board, String> colWriter;
+    @FXML private TableColumn<Board, Date> colRegdate;
+    @FXML private TableColumn<Board, Date> colUdpdate;
+    @FXML private Button btnWrite;
+    @FXML private TextField title;
+    @FXML private TextField wirter;
+    Board selectedItem;
 
+    
+    @FXML void Write(ActionEvent event) throws IOException {
+    	SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
+    	//switchScene(event, "Write.fxml");
+    }
+ 
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+ 	
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {		 
-		list();
 	
-		ObservableList<Board> list = FXCollections.observableArrayList(
-			boardList
-		);
-	
-		colBoardNo.setCellValueFactory(new PropertyValueFactory<>("BoardNo"));
+	public void initialize(URL arg0, ResourceBundle arg1) {
+			
+//		System.out.println("##### 게시글 목록 #####");
+		boardList = boardService.list(); // 게시글 목록
+		printAll(boardList);
+		
+		ObservableList<Board> list = FXCollections.observableArrayList(boardList);
+		
+		//연결
+		colNumber.setCellValueFactory(new PropertyValueFactory<>("BoardNo")); // getter의 이름으로 작성
 		colTitle.setCellValueFactory(new PropertyValueFactory<>("Title"));
 		colWriter.setCellValueFactory(new PropertyValueFactory<>("Writer"));
-		colRegDate.setCellValueFactory(new PropertyValueFactory<>("RegDate"));
-		colUpdDate.setCellValueFactory(new PropertyValueFactory<>("UpdDate"));
-	
-		boardTableView.setItems(list);
+		colRegdate.setCellValueFactory(new PropertyValueFactory<>("RegDate"));
+		colUdpdate.setCellValueFactory(new PropertyValueFactory<>("updDate"));
 		
-		//클릭 시 화면 전환
+		// TableView에 데이터 리스트를 지정
+		// - 미리 매핑된 TableColumn에 리스트의 요소 객체의 변수값이 지정됨
+		tableView.setItems(list);
 		
-		 boardTableView.setOnMouseClicked(new EventHandler<MouseEvent>(){
-			 
+		//boardTableView.getItems().addAll(boardList);
+		// 더블 클릭 이벤트
+		tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			
 			@Override
 			public void handle(MouseEvent event) {
-				
-				if( event.getClickCount() == 2) {
+				if (event.getClickCount() == 2) {
+					System.out.println("더블 클릭!!");
 					
-					selectedItem = boardTableView.getSelectionModel().getSelectedItem();
+					selectedItem = tableView.getSelectionModel().getSelectedItem();
+					System.out.println("선택한 아이템 : " + selectedItem);
 					
-					stage = (Stage)	((Node) event.getSource()).getScene().getWindow();
+					stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					
-					int index = boardTableView.getSelectionModel().getSelectedIndex();
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("READ.fxml"));
+					int index = tableView.getSelectionModel().getSelectedItem().getBoardNo();
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("Read.fxml"));
+					
+					
 					try {
-						root = loader.load();	
+						
+						root = loader.load();				
+													
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 					
-					ReadController subController = loader.getController();
+					ReadController readController = loader.getController();
 					
-					if( subController != null) {
-						// inputItemIndex 메소드 정의
-						subController.inputItemIndex(index);
+					if(readController != null) {
+						readController.inputItemIndex(index);
 					}
 					
 					try {
 						SceneUtil.getInstance().switchScene(event, UI.READ.getPath());
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
+
 				}
-				
-			}
-		
-			
+	    }
 		});
-//			//글쓰기화면 이동
-//			SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
-//			
-//			//프로그램종료
-//			SceneUtil.getInstance().close(event);
+		
 	}
+		
+		/**
+		 * 게시글 목록
+		 */
+		public static void list() {
+			System.out.println("##### 게시글 목록 #####");
+			boardList = boardService.list();
+			printAll(boardList);
+		}
+		
+		
+		/**
+		 * 글 목록 전체 출력 메소드
+		 * @param list
+		 */
+		public static void printAll(List<? extends Text> list) {
+			if( list == null || list.isEmpty() ) {
+				System.out.println("조회된 글이 없습니다.");
+				return;
+			}
+			
+			for (Text text : list) {
+				print(text);
+			}
+		}
+		
+		/**
+		 * 글 출력 메소드
+		 * @param text
+		 */
+		public static void print(Text text) {
+			
+			if( text == null ) {
+				System.out.println("(조회되지 않는 글)");
+				return;
+			}
+			
+			int no = text.getNo();
+			String title = text.getTitle();
+			String writer =  text.getWriter();
+			String content = text.getContent();
+			Date regDate = text.getRegDate();
+			Date updDate = text.getUpdDate();
+			
+			System.out.println("# 글번호 : " + no + " ##########################");
+			if( text instanceof Board )	// 제목은 게시글에서만, 댓글에는 제목 없음
+				System.out.println("# 제목 : " + title);
+			System.out.println("# 작성자 : " + writer);
+			System.out.println("# " + content);
+			System.out.println("# - 등록일자 : " + regDate);
+			System.out.println("# - 수정일자 : " + updDate);
+			System.out.println("######################################");
+			System.out.println();
+		}
 }
+

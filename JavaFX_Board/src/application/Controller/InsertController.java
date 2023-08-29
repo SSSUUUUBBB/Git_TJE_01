@@ -31,7 +31,7 @@ public class InsertController {
     @FXML    private TextArea textwriter;
     
     @FXML
-    void write(ActionEvent event) throws IOException {
+    void Write(ActionEvent event) throws IOException {
     	Board board = input();
     	
     	int result = boardService.insert( board );

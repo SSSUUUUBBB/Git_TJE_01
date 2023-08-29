@@ -24,10 +24,11 @@ import javafx.stage.Stage;
 public class ReadController {
 	static List<Board> boardList = new ArrayList<Board>();				// 게시글 목록
 	static BoardService boardService = new BoardServiceImpl();
+	
 	Text selectedBoard;
-	@FXML private TableView<Board> boardTableView;
-    @FXML private TableColumn<Board, Integer> colBoardNo;
-    @FXML private TableColumn<Board, String> colTitle;
+	@FXML private TableView<Board> tableView;
+    @FXML private TableColumn<Board, Integer> colNumber;
+    @FXML private TableColumn<Board, String> col;
     @FXML private TableColumn<Board, String> colWriter;
     @FXML private TableColumn<Board, Date> colRegDate;
     @FXML private TableColumn<Board, Date> colUpdDate;
@@ -36,8 +37,14 @@ public class ReadController {
     @FXML private Button ListButton;
     @FXML private TextArea content;
     @FXML private TextField titleName;
-    @FXML private Button updateButton;
+    @FXML private Button upddateButton;
     @FXML private TextField writerName;
+
+
+    @FXML
+    void List(ActionEvent event) {
+
+    }
 
     @FXML
     void Delete(ActionEvent event) throws IOException {
@@ -51,10 +58,6 @@ public class ReadController {
 		SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
     }
     
-    @FXML
-    void List(ActionEvent event) {
-
-    }
     
     Board selectedItem;
 	private Parent root;
