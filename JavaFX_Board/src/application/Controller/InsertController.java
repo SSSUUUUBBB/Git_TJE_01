@@ -64,23 +64,5 @@ public class InsertController {
       	SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
     }
         
-// 	public Board input() {
-// 		
-//		String title = texttitle.getText();
-//		String writer = textwriter.getText();
-//		String content = textcontent.getText();
-//		
-//		Board board = new Board(title, writer, content);
-//		return board;
-//	}
- 	
-// 	SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
-// 	public void switchScene(ActionEvent event, String fxml) throws IOException {
-//		Parent root = FXMLLoader.load(getClass().getResource(fxml));
-//		scene = new Scene(root);
-//		stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-//		stage.setScene(scene);		// 메인 씬으로 지정
-//		stage.show();
-//}
 	}
 

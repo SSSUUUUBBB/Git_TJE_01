@@ -56,10 +56,7 @@ public class ReadController {
     
 	//게시글 읽기
 	public void inputItemIndex(int index) {
-		System.out.println("넘어온 index : " + index);
-		
 		selectedBoard = boardService.select(index);
-		System.out.println(selectedBoard);
 		
 		titleName.setText(selectedBoard.getTitle());
 		writerName.setText(selectedBoard.getWriter());
@@ -99,20 +96,15 @@ public class ReadController {
 				updateController.inputItemIndex(boardNo);
 			}
 			// 화면 이동
-			switchScene(event, root, UI.UPDATE.getPath());
-			//SceneUtil.getInstance().switchScene(event, UI.UPDATE.getPath(), root);
+			//switchScene(event, root, UI.UPDATE.getPath());
+			SceneUtil.getInstance().switchScene(event, UI.UPDATE.getPath(), root);
 	    }
 	 
-		public void switchScene(ActionEvent event, Parent root, String fxml) throws IOException {
-			scene = new Scene(root);
-			stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-			stage.setScene(scene);		// 메인 씬으로 지정
-			stage.show();
-		}	
-		
-//		public void switchScene(Parent root, Stage stage) {
+//		public void switchScene(ActionEvent event, Parent root, String fxml) throws IOException {
 //			scene = new Scene(root);
-//			stage.setScene(scene);
+//			stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+//			stage.setScene(scene);		// 메인 씬으로 지정
 //			stage.show();
-//		}
+//		}	
+//		
 }
