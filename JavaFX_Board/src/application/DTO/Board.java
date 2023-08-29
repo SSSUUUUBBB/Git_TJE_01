@@ -6,7 +6,6 @@ public class Board extends Text {
 	
 	private SimpleIntegerProperty boardNo;
 		
-	// 생성자
 	public Board() {
 		this("제목없음", "글쓴이없음", "내용없음");
 	}
@@ -15,7 +14,6 @@ public class Board extends Text {
 		super(title, writer, content);
 	}
 
-	// getter, setter
 	public int getBoardNo() {
 		return boardNo.get();
 	}
@@ -24,5 +22,4 @@ public class Board extends Text {
 		this.boardNo = new SimpleIntegerProperty(boardNo);
 		setNo(boardNo);				
 	}
-	
 }

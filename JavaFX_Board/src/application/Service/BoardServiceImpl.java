@@ -5,18 +5,6 @@ import java.util.List;
 import application.DAO.BoardDAO;
 import application.DTO.Board;
 
-
-//		비즈니스 로직 구현 클래스
-//		............
-/*		............
-		............
-		............
-		............
-		............
-		............
-		
-*/
-
 public class BoardServiceImpl implements BoardService{
 
 	private BoardDAO boardDAO = new BoardDAO();
@@ -36,8 +24,6 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int insert(Board board) {
 		int result = boardDAO.insert(board);
-//		글 작성자 회원에게 퐁니트 10점을 부여한다.
-		
 		return result;
 	}
 
@@ -52,5 +38,4 @@ public class BoardServiceImpl implements BoardService{
 		int result = boardDAO.delete(boardNo);
 		return result;
 	}
-
 }

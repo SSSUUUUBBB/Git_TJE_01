@@ -4,7 +4,6 @@ import java.util.List;
 
 import application.DTO.Board;
 
-
 public interface BoardService {
 //	게시글 목록
 	List<Board> list();
@@ -16,5 +15,4 @@ public interface BoardService {
 	int update(Board board);
 //	게시글 삭제
 	int delete(int boardNo);
-	
 }

@@ -35,7 +35,7 @@ public class InsertController {
 
     @FXML
     void List(ActionEvent event) throws IOException {
-		switchScene(event, UI.MAIN.getPath()); 
+      	SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
     }
 
     @FXML
@@ -61,7 +61,7 @@ public class InsertController {
 			System.out.println("게시글이 작성되었습니다.");
 		} 
 		
-    	switchScene(event, UI.MAIN.getPath()); 
+      	SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
     }
         
 // 	public Board input() {
@@ -75,12 +75,12 @@ public class InsertController {
 //	}
  	
 // 	SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
- 	public void switchScene(ActionEvent event, String fxml) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource(fxml));
-		scene = new Scene(root);
-		stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-		stage.setScene(scene);		// 메인 씬으로 지정
-		stage.show();
-}
+// 	public void switchScene(ActionEvent event, String fxml) throws IOException {
+//		Parent root = FXMLLoader.load(getClass().getResource(fxml));
+//		scene = new Scene(root);
+//		stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+//		stage.setScene(scene);		// 메인 씬으로 지정
+//		stage.show();
+//}
 	}
 

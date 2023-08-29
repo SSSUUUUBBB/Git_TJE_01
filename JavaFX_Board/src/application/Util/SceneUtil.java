@@ -22,7 +22,7 @@ public class SceneUtil {
     FXMLLoader loader;
     
     private SceneUtil() {
-        // private 생성자
+
     }
     
     public static SceneUtil getInstance() {

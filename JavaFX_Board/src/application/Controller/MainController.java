@@ -31,7 +31,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class MainController implements Initializable{
-	static List<Board> boardList = new ArrayList<Board>();				// 게시글 목록
+	static List<Board> boardList = new ArrayList<Board>();
 	static BoardService boardService = new BoardServiceImpl();
     private Stage stage;
     private Scene scene;
@@ -49,22 +49,20 @@ public class MainController implements Initializable{
     Board selectedItem;
 
     @FXML void Write(ActionEvent event) throws IOException {
-    	//SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
-    	switchScene(event, UI.INSERT.getPath());
+    	SceneUtil.getInstance().switchScene(event, UI.INSERT.getPath());
+//    	switchScene(event, UI.INSERT.getPath());
     }
  
 	@Override
 	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 			
-		System.out.println("##### 게시글 목록 #####");
-		boardList = boardService.list(); // 게시글 목록
+		boardList = boardService.list();
 		printAll(boardList);
 		
 		ObservableList<Board> list = FXCollections.observableArrayList(boardList);
 		
-		//연결
-		colNumber.setCellValueFactory(new PropertyValueFactory<>("BoardNo")); // getter의 이름으로 작성
+		colNumber.setCellValueFactory(new PropertyValueFactory<>("BoardNo"));
 		colTitle.setCellValueFactory(new PropertyValueFactory<>("Title"));
 		colWriter.setCellValueFactory(new PropertyValueFactory<>("Writer"));
 		colRegdate.setCellValueFactory(new PropertyValueFactory<>("RegDate"));
@@ -76,10 +74,7 @@ public class MainController implements Initializable{
 			@Override
 			public void handle(MouseEvent event) {
 				if (event.getClickCount() == 2) {
-					System.out.println("더블 클릭!!");
-					
 					selectedItem = tableView.getSelectionModel().getSelectedItem();
-					System.out.println("선택한 아이템 : " + selectedItem);
 					
 					stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					
@@ -113,7 +108,6 @@ public class MainController implements Initializable{
 			boardList = boardService.list();
 			printAll(boardList);
 		}
-		
 		
 		/**
 		 * 글 목록 전체 출력 메소드
@@ -158,14 +152,6 @@ public class MainController implements Initializable{
 			System.out.println("######################################");
 			System.out.println();
 		}
-		
-		public void switchScene(ActionEvent event, String fxml) throws IOException {
-			Parent root = FXMLLoader.load(getClass().getResource(fxml));
-			scene = new Scene(root);
-			stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-			stage.setScene(scene);
-			stage.show();
-	}	
 		
 		public void switchScene(Stage stage, String fxml) {
 			scene = new Scene(root);

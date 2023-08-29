@@ -43,7 +43,7 @@ import javafx.scene.control.TextField;
     
     public void UpdateCompl(ActionEvent event) throws IOException {
 
-    	int boardNo = selectedBoard.getNo(); // null값임
+    	int boardNo = selectedBoard.getNo();
     	
 		String writer1 = writerName.getText();
 		String title1 = titleName.getText();

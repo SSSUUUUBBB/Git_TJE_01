@@ -9,6 +9,7 @@ import application.DTO.Board;
 import application.DTO.Text;
 import application.Service.BoardService;
 import application.Service.BoardServiceImpl;
+import application.Util.SceneUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,8 +49,9 @@ public class ReadController {
 
     @FXML
     void List(ActionEvent event) throws IOException{
-    	root = FXMLLoader.load(getClass().getResource(UI.MAIN.getPath()));
-    	switchScene(event, root, UI.MAIN.getPath());
+//    	root = FXMLLoader.load(getClass().getResource(UI.MAIN.getPath()));
+//    	switchScene(event, root, UI.MAIN.getPath());
+      	SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
     }
     
 	//게시글 읽기
@@ -65,16 +67,12 @@ public class ReadController {
 	}
 	
 	public void Delete(ActionEvent event) throws IOException {
-	    	System.out.println("##### 게시글 삭제 #####");
-			System.out.print("게시글 번호 : ");
 			int boardNo = selectedBoard.getNo();
 			int result = boardService.delete(boardNo);
 			if( result > 0 ) {
 				System.out.println("게시글이 삭제되었습니다.");
 			}
-			//SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
-			// 화면 이동
-			switchScene(event, root, UI.MAIN.getPath());
+			SceneUtil.getInstance().switchScene(event, UI.MAIN.getPath());
 	    }
 	   
 	// 수정 버튼
@@ -111,10 +109,10 @@ public class ReadController {
 			stage.setScene(scene);		// 메인 씬으로 지정
 			stage.show();
 		}	
-
-		public void switchScene(Parent root, Stage stage) {
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-		}
+		
+//		public void switchScene(Parent root, Stage stage) {
+//			scene = new Scene(root);
+//			stage.setScene(scene);
+//			stage.show();
+//		}
 }
